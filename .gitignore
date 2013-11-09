@@ -1,0 +1,9 @@
+tmp
+/build
+/iphone
+build.log
+.metadata
+.DS_Store
+.fastdev.lock
+/Resources/scratch
+/.settings
