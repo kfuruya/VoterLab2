@@ -1,7 +1,7 @@
 //add a single variable to the global scope to which we may choose to
 //intentionally add items to
 var globals = {};
-var labNumber = 'lab0.js';
+var labNumber = 'lab2.js';
 
 //create a private scope to prevent further polluting the global object
 (function() {

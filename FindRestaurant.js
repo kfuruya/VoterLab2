@@ -1,5 +1,8 @@
 // Kim Furuya
 // Nov 9 2013
+//
+// TODO on line 87
+//
 // Allows user to search for nearby businesses, first three nearest restaurants
 /* TODO: show all the things, 
  * scrollable list, 
@@ -12,79 +15,93 @@
  * Actual distance communication (.7 miles to restaurant)
  */
 
-
-
-
-
-var Settings = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory,'Settings');
-Ti.API.info("Created Settings: " + Settings.createDirectory());
-Ti.API.info('Settings ' + Settings);
-var newFile = Titanium.Filesystem.getFile(Settings.nativePath,'Settings.txt');
-
-newFile.createFile();
-
-if (newFile.exists()){
-    newFile.write('line 1\n');
-    Ti.API.info('newfile: '+newFile.read());
-}
-
-
-
-
-
 // Set up the yelp API
 
 var api_key = 'fEZ0DBcgGNEoDymnpTslbw';
 var term = "food";
 var YWSID = "1T-zw3dfGOecUkbSrqtt2g";
 var category = "";
-//var latitude = pos.coords.latitude;
-var latitude = 34.1386;
-var longitude = 118.1255;
 //var longitude = pos.coords.longitude;
+//var latitude = pos.coords.latitude;
 var query = "http://api.yelp.com/business_review_search?radius=10&term=" + term + "&category=" + category +
             "&num_biz_requested=50&ywsid=" + YWSID + "&location=Midtown+Atlanta";
 var xhr = Titanium.Network.createHTTPClient();
-
+var lock = true;
 var rows = [];
-xhr.onload = function() {
-    try {
-    	var results = JSON.parse(this.responseText);
- 
-        //Titanium.API.debug(results);
- 
-        for (var item in results.businesses) {
-        	Ti.API.info(item);
-        	Ti.API.info(results.businesses[item].name)
-//            rows.push(buildData(results.businesses[item]));
-        }
-        //yelpTableView.setData(rows);
-        
-    } catch(e) {
-        alert(e);
-        
-        Ti.API.info("no work");
-    }
-};
-
-if (newFile.exists()){
-    newFile.write(rows.length);
-    Ti.API.info('newfile: '+newFile.read());
-}
+var numRestaurants = Number.POSITIVE_INFINITY;
+count = 0;
 
 xhr.open('GET', query);
 xhr.send();
 
 
+var win = Ti.UI.createWindow();
+var table = Ti.UI.createTableView();
+var tableData = [];
+var json, fighters, fighter, i, row, nameLabel, nickLabel;
+
+var xhr = Ti.Network.createHTTPClient({
+    onload: function() {
+	// Ti.API.debug(this.responseText);
+	
+    var results = JSON.parse(this.responseText);
+    for (var item in results.businesses) {
+    	//Ti.API.info(results.businesses[item]);
+        rows.push(results.businesses[item]);
+        count = count + 1;
+    }
+	Ti.App.fireEvent('tableLoaded');
+    numRestaurants = count;
 
 
+	for (i = 0; i < rows.length; i++) {
+	    fighter = rows[i];
+	    row = Ti.UI.createTableViewRow({
+	        height:'60dp'
+	    });
+	    var button = Ti.UI.createButton({
+	    	title: "check in",
+	    	left: 5,
+	    	height : 40,
+	    	buttonid : fighter.name
+	    });
+	    row.add(button);
+	    nameLabel = Ti.UI.createLabel({
+	        text:fighter.name,
+	        left: 75,
+	        font:{
+	            fontSize:'24dp',
+		    fontWeight:'bold'
+		},
+		height:'auto',
+		left:'50dp',
+		top:'5dp',
+		color:'#000',
+		touchEnabled:false
+	    });
 
-var view = Ti.UI.createView({
-    backgroundColor:'#000',
-    top:0,
-    left:0,
-    width:'100%',
-    height:'100%',
-    layout:'vertical'
+	    row.add(nameLabel);
+	    tableData.push(row);
+	    /* TODO Make this a server push and go to new window */
+	    button.addEventListener('click', function(e) {
+			Ti.API.info('button' + e.source.buttonid + ' clicked.');
+			alert('Button ' + e.source.buttonid);
+	    });
+        }
+
+	table.setData(tableData);
+    },
+    onerror: function(e) {
+	Ti.API.debug("STATUS: " + this.status);
+	Ti.API.debug("TEXT:   " + this.responseText);
+	Ti.API.debug("ERROR:  " + e.error);
+	alert('There was an error retrieving the remote data. Try again.');
+    },
+    timeout:5000
 });
 
+xhr.open("GET", query);
+xhr.send();
+
+win.add(table);
+win.open();
