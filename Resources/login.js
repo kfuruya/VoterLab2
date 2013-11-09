@@ -44,11 +44,23 @@ loginBtn.addEventListener('click',function(e)
 		var params = {
 			username: username.value,
 			password: Ti.Utils.md5HexDigest(password.value)
-		};
+			};
+		loginReq.send(params);
 		
+		var nearbyRest = Titanium.UI.createWindow({
+			title 			: 'Restaurant',
+			backButtonTitle : 'Login',
+			navBarHidden 	: false,
+			backgroundColor	: '#000',
+			username		: username.value,
+			url				: 'awesomeStuff.js'
+			});
+			
+			
 		
-		
-		
+			Titanium.UI.currentTab.open(nearbyRest, {
+					animated : true
+				}); 	
 	}
 	else
 	{
