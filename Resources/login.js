@@ -39,16 +39,22 @@ loginBtn.addEventListener('click',function(e)
 {
 	if (username.value != '' && password.value != '')
 	{
-
-		loginReq.open("POST","db.anonymo.co");
-		var params = {
-			username: username.value,
-			password: Ti.Utils.md5HexDigest(password.value)
-		};
 		
-		
-		
-		
+			// Ti.API.debug(this.responseText);
+			 	if (username.value	== "test" &&
+			 	   password.value	== "test") {
+			 	   	var nearbyRest = Titanium.UI.createWindow({
+										title 			: 'Restaurant',
+										backButtonTitle : 'Login',
+										navBarHidden 	: false,
+										backgroundColor	: '#000',
+										username		: username.value,
+										url				: 'awesomeStuff.js'
+										});
+										
+			Titanium.UI.currentTab.open(nearbyRest, {
+				animated : true });
+		 }
 	}
 	else
 	{

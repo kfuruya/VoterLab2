@@ -25,6 +25,7 @@ var labNumber = 'login.js';
 		title : 'Go to lab'
 	});
 	
+	
 	defaultWindow.add(jumpToApp);
 
 	var tabGroup = Titanium.UI.createTabGroup(
