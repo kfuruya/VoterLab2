@@ -34,7 +34,6 @@ count = 0;
 xhr.open('GET', query);
 xhr.send();
 
-var screenWidth = Ti.Platform.displayCaps.platformWidth; 
 
 var win = Ti.UI.createWindow();
 var table = Ti.UI.createTableView();
@@ -55,101 +54,40 @@ var xhr = Ti.Network.createHTTPClient({
     numRestaurants = count;
 
 
-
-	row = Ti.UI.createTableViewRow({
-	        height:'60dp'
-	    });
-
-	    var button = Ti.UI.createButton({
-	    	title: 'Octane',
-	    	left: 5,
-	    	height : 40,
-	    	width: screenWidth - 85,
-	        font:{
-	        
-			color:'#336699',
-	        fontSize:'24dp',
-		    fontWeight:'bold'
-			},
-	    	buttonid : 'Octane'
-	    });
-	    row.add(button);
-	    
-	    var distLabl = Ti.UI.createLabel({
-	    	text: '0.3 miles',
-	    	right: 3,
-	    	width: 65,
-	        font:{
-			color:'#336699',
-	        fontSize:'20dp'
-			},
-	    });
-	    row.add(distLabl);
-	    button.addEventListener('click', function(e) {
-			Ti.API.info('button' + e.source.buttonid + ' clicked.');
-			
-			var nearbyRest = Titanium.UI.createWindow({
-										title 			: 'Restaurant',
-										backButtonTitle : 'Login',
-										navBarHidden 	: false,
-										backgroundColor	: '#000',
-										url				: 'ui/LaunchReview.js'
-										});
-										
-			Titanium.UI.currentTab.open(nearbyRest, {
-				animated : true });
-		 
-	    });
-	    tableData.push(row);
-
-
-
-
-
-
-
-
 	for (i = 0; i < rows.length; i++) {
 	    fighter = rows[i];
-	    if (fighter.is_closed == false) {
 	    row = Ti.UI.createTableViewRow({
 	        height:'60dp'
 	    });
 	    var button = Ti.UI.createButton({
-	    	title: fighter.name,
+	    	title: "check in",
 	    	left: 5,
 	    	height : 40,
-	    	width: screenWidth - 85,
-	        font:{
-	        
-			color:'#336699',
-	        fontSize:'24dp',
-		    fontWeight:'bold'
-			},
 	    	buttonid : fighter.name
 	    });
 	    row.add(button);
-	    
-	    var distLabl = Ti.UI.createLabel({
-	    	text: fighter.distance.toFixed(1) + ' miles',
-	    	right: 3,
-	    	width: 65,
+	    nameLabel = Ti.UI.createLabel({
+	        text:fighter.name,
+	        left: 75,
 	        font:{
-			color:'#336699',
-	        fontSize:'20dp'
-			},
+	            fontSize:'24dp',
+		    fontWeight:'bold'
+		},
+		height:'auto',
+		left:'50dp',
+		top:'5dp',
+		color:'#000',
+		touchEnabled:false
 	    });
-	    row.add(distLabl);
-	    
-	    
-	    
+
+	    row.add(nameLabel);
 	    tableData.push(row);
 	    /* TODO Make this a server push and go to new window */
 	    button.addEventListener('click', function(e) {
 			Ti.API.info('button' + e.source.buttonid + ' clicked.');
 			alert('Button ' + e.source.buttonid);
 	    });
-       } }
+        }
 
 	table.setData(tableData);
     },

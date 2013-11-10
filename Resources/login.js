@@ -47,7 +47,7 @@ loginBtn.addEventListener('click',function(e)
 										navBarHidden 	: false,
 										backgroundColor	: '#000',
 										username		: username.value,
-										url				: 'lab0.js'
+										url				: 'FindRestaurant.js'
 										});
 										
 			Titanium.UI.currentTab.open(nearbyRest, {
