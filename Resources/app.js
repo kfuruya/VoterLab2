@@ -1,8 +1,15 @@
 //add a single variable to the global scope to which we may choose to
 //intentionally add items to
 var globals = {};
+/*
+<<<<<<< HEAD
 var labNumber = 'lab2.js';
+=======
+var labNumber = 'login.js';
+>>>>>>> dad1911d62bfa2196eedcc4861a9c23dc7ef26ae
+*/
 
+var labNumber = "StarRatings.js";
 //create a private scope to prevent further polluting the global object
 (function() {
 		
@@ -53,6 +60,21 @@ lab1Window = Titanium.UI.createWindow({
 		Ti.API.log("DEBUG",'jumpToApp');
 		tab.open(lab1Window,{animated:true});
 	});
+
+
+	// this sets the background color of the master UIView (when there are no windows/tab groups on it)
+	Titanium.UI.setBackgroundColor('#fff');
+	var tabGroup = Titanium.UI.createTabGroup();
+	var login = Titanium.UI.createWindow({
+		title:'User Authentication Demo',
+		tabBarHidden:true,
+		url:'login.js'
+	});
+	var loginTab = Titanium.UI.createTab({
+		title:"Login",
+		window:login
+	});
+	tabGroup.addTab(loginTab);
 
 	tabGroup.open({
 		 transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT

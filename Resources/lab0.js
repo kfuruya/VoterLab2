@@ -16,13 +16,11 @@ var aLabel = Ti.UI.createLabel({
 Ti.UI.currentWindow.add(aLabel);
 
 
-var fish = mkRadio('fish', 50 + buttonSpace);
-var chix = mkRadio('chix', 50 + 2*buttonSpace);
+var fish = mkRadio('Take Photo', 50 + buttonSpace);
 var veg  = mkRadio('veg', 50 + 3*buttonSpace);
 
 
 Ti.UI.currentWindow.add(fish);
-Ti.UI.currentWindow.add(chix);
 Ti.UI.currentWindow.add(veg);
 
 fish.addEventListener('click', function() {
