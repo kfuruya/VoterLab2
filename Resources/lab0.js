@@ -38,12 +38,12 @@ veg.addEventListener('click', function() {
 
 chix.addEventListener('click', function() {
 		var readContents;  
-		var filename = 'KS_nav_views.png';  
-		var userDir = Titanium.Filesystem.getUserDirectory();  
-		var readFile = Titanium.Filesystem.getFile(userDir, filename);  
-		var img = Ti.UI.createImageView({
-  		image:readFile
-		});
+		var filename 	= 'KS_nav_views.png';  
+		var userDir 	= Titanium.Filesystem.getUserDirectory();  
+		var readFile 	= Titanium.Filesystem.getFile(userDir, filename);  
+		var img 		= Ti.UI.createImageView({
+  					image:readFile
+					});
 		Ti.UI.currentWindow.add(img);
 
 });

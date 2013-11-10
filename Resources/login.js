@@ -39,6 +39,7 @@ loginBtn.addEventListener('click',function(e)
 {
 	if (username.value != '' && password.value != '')
 	{
+<<<<<<< HEAD
 
 		loginReq.open("POST","db.anonymo.co");
 		var params = {
@@ -49,6 +50,24 @@ loginBtn.addEventListener('click',function(e)
 		
 		
 		
+=======
+		
+			// Ti.API.debug(this.responseText);
+			 	if (username.value	== "test" &&
+			 	   password.value	== "test") {
+			 	   	var nearbyRest = Titanium.UI.createWindow({
+										title 			: 'Restaurant',
+										backButtonTitle : 'Login',
+										navBarHidden 	: false,
+										backgroundColor	: '#000',
+										username		: username.value,
+										url				: 'awesomeStuff.js'
+										});
+										
+			Titanium.UI.currentTab.open(nearbyRest, {
+				animated : true });
+		 }
+>>>>>>> b0baead6539b6b2625cf6a84a5c8d26914cfcf83
 	}
 	else
 	{

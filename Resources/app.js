@@ -1,13 +1,7 @@
 //add a single variable to the global scope to which we may choose to
 //intentionally add items to
 var globals = {};
-/*
-<<<<<<< HEAD
-var labNumber = 'lab2.js';
-=======
 var labNumber = 'login.js';
->>>>>>> dad1911d62bfa2196eedcc4861a9c23dc7ef26ae
-*/
 
 var labNumber = "StarRatings.js";
 //create a private scope to prevent further polluting the global object
@@ -31,6 +25,7 @@ var labNumber = "StarRatings.js";
 		},
 		title : 'Go to lab'
 	});
+	
 	
 	defaultWindow.add(jumpToApp);
 
