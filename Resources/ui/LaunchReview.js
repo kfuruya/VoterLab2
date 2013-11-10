@@ -1,4 +1,4 @@
-var win = Ti.UI.createWindow({
+var win3 = Ti.UI.createWindow({
   backgroundColor: 'white'
 });
 
@@ -25,8 +25,8 @@ var labl = Titanium.UI.createLabel({
 	borderRadius:1,
 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:20}
 });
-win.add(labl);
-win.add(star);
+win3.add(labl);
+win3.add(star);
 
 
 
@@ -40,7 +40,7 @@ var labl = Titanium.UI.createLabel({
 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:15}
 });
 
-win.add(labl);
+win3.add(labl);
 
 
 
@@ -60,7 +60,7 @@ var submitBtn = Titanium.UI.createButton({
 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:14},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
-win.add(submitBtn);
+win3.add(submitBtn);
 
 
 
@@ -72,7 +72,7 @@ var submitBtn = Titanium.UI.createButton({
 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:14},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
-win.add(submitBtn);
+win3.add(submitBtn);
 
 
 var submitBtn = Titanium.UI.createButton({
@@ -83,7 +83,7 @@ var submitBtn = Titanium.UI.createButton({
 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:14},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
-win.add(submitBtn);
+win3.add(submitBtn);
 
 
 	    submitBtn.addEventListener('click', function(e) {
