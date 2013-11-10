@@ -39,20 +39,17 @@ loginBtn.addEventListener('click',function(e)
 {
 	if (username.value != '' && password.value != '')
 	{
-		if (	username.value	== "test" &&
-			 	password.value	== "test") {
 			var nearbyRest = Titanium.UI.createWindow({
 										title 			: 'Restaurant',
 										backButtonTitle : 'Login',
+										username		: username.value,
 										navBarHidden 	: false,
 										backgroundColor	: '#000',
-										username		: username.value,
-										url				: 'lab0.js'
+										url				: 'FindRestaurant.js'
 										});
 										
 			Titanium.UI.currentTab.open(nearbyRest, {
 				animated : true });
-		 }
 	}
 	else
 	{
