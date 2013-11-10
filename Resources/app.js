@@ -2,11 +2,10 @@
 //intentionally add items to
 var globals = {};
 var labNumber = 'login.js';
-
 var labNumber = "StarRatings.js";
 //create a private scope to prevent further polluting the global object
 (function() {
-		
+	
 	var defaultWindow = Titanium.UI.createWindow({
 		title : 'Titanium Workshop',
 		navBarHidden : false,
@@ -55,7 +54,6 @@ lab1Window = Titanium.UI.createWindow({
 		Ti.API.log("DEBUG",'jumpToApp');
 		tab.open(lab1Window,{animated:true});
 	});
-
 
 	// this sets the background color of the master UIView (when there are no windows/tab groups on it)
 	Titanium.UI.setBackgroundColor('#fff');

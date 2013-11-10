@@ -1,8 +1,7 @@
 var screenSize = Titanium.Platform.displayCaps.platformHeight;
-var buttonSpace = screenSize/6;
 
 var aLabel = Ti.UI.createLabel({
-	text : 'Enter ratings',
+	text : "Review "+ Ti.UI.currentWindow.title,
 	font : {fontSize:20},
 	height : 40,
 	width : 100,
@@ -10,14 +9,13 @@ var aLabel = Ti.UI.createLabel({
 });
 Ti.UI.currentWindow.add(aLabel);
 
-var fish = mkRadio('Take Photo', 50 + buttonSpace);
+var checkIn = mkRadio('Check in', 10);
+var picture = mkRadio('Take picture', 50);
 
-Ti.UI.currentWindow.add(fish);
+Ti.UI.currentWindow.add(checkIn);
+Ti.UI.currentWindow.add(picture);
 
-
-
-
-fish.addEventListener('click', function(e) {
+checkIn.addEventListener('click', function(e) {
 	var dialog = Ti.UI.createAlertDialog({
 		message: 'Also review this restaurant now?',
 		buttonNames: ['Review later','Review now'],
@@ -25,24 +23,18 @@ fish.addEventListener('click', function(e) {
 		});
 	dialog.addEventListener('click', function(e) {
 		if (e.index === e.cancel || e.cancel === true) {
-			return;
+			Titanium.API.info('Clicked Review Later');  //TODO: link
 		}
-		switch (e.index) {
-			case 0: Titanium.API.info('Clicked Review Later');
-			break;
-		
-			default:
-			Titanium.API.info('Clicked Review Now');
-			break;
+		else {
+			Titanium.API.info('Clicked Review Later');  //TODO: link
 		}
 	});
 	dialog.show();
 });
 
-
 function mkRadio(entree, topLoc){
 	var buttonOut = Titanium.UI.createButton({
-		top:topLoc,
+		bottom:topLoc,
 		width:100,
 		height:40,
 		font:{fontSize:20,fontWeight:'bold',fontFamily:'Helvetica Neue'},
